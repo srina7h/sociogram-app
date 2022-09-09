@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import HomePage from "./pages/HomePage";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './dialogs/LoginDialog';
+import RegisterDialog from './dialogs/RegisterDialog';
+import UserDetailsPage from './pages/UserDetailsPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/Login" element={<Login/>}/>
+          <Route path="/Signin" element={<RegisterDialog/>}/>
+          <Route path="/UserDetailsPage" element={<UserDetailsPage/>}/>
+          <Route path="/ProfilePage" element={<ProfilePage/>}/>
+          
+      </Routes>
+    </BrowserRouter>
   );
 }
 
