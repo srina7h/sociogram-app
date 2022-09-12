@@ -1,9 +1,39 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import React from "react";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
+import userApi from "../api/user";
 
 const Login = ({ isLoginVisible, setLoginVisible, setRegisterVisible }) => {
+  const navigate = useNavigate();
+  const { setLoggedInUser } = useContext(UserContext);
+  const [login, setLogin] = useState({ name: "", password: "" });
   console.log(isLoginVisible);
+  const loginAPI = (event) => {
+    event.preventDefault();
+
+    userApi
+      .post(`/auth/login`, {
+        name: login.name,
+        password: login.password,
+      })
+      .then((res) => {
+        if (res.data.data) {
+          let loggedInUser = res.data.data;
+          loggedInUser.isLoggedIn = true;
+          setLoggedInUser(loggedInUser);
+          setLoginVisible(false)
+        } else if (res.data.error) {
+          console.log(res.data.error.message);
+        } else {
+          console.log("Something went wrong");
+        }
+      })
+      .catch((error) => {
+        console.log(`Error -> ${error}`);
+      });
+  };
   return (
     <div>
       <Modal show={isLoginVisible} onHide={() => setLoginVisible(false)}>
@@ -20,6 +50,9 @@ const Login = ({ isLoginVisible, setLoginVisible, setRegisterVisible }) => {
                 id="name"
                 placeholder="Enter your name"
                 name="name"
+                onChange={(event) => {
+                  setLogin({ ...login, name: event.target.value });
+                }}
               />
             </div>
             <div className="mb-3">
@@ -32,6 +65,9 @@ const Login = ({ isLoginVisible, setLoginVisible, setRegisterVisible }) => {
                 id="pwd"
                 placeholder="Enter password"
                 name="pswd"
+                onChange={(event) => {
+                  setLogin({ ...login, password: event.target.value });
+                }}
               />
             </div>
             <div className="form-check mb-3">
@@ -44,14 +80,17 @@ const Login = ({ isLoginVisible, setLoginVisible, setRegisterVisible }) => {
                     setRegisterVisible(true);
                   }}
                 >
-                  SignUp
+                  New User Register
                 </button>
               </label>
             </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={() => setLoginVisible(false)}>
+          <Button
+            variant="outline-primary"
+            onClick={(event) => loginAPI(event)}
+          >
             Login
           </Button>
         </Modal.Footer>
