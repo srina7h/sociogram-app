@@ -1,39 +1,17 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+
 import React from "react";
-import Post from "../component/PostComponent";
-import FooterComponent from "../component/FooterComponent";
-import FollowingCard from "../component/cards/FollowingCard";
-import FollowerCard from "../component/cards/FollowerCard";
+
 import NavrBarComponent from "../component/NavrBarComponent";
 import CreatePostComponent from "../component/CreatePostComponent";
-import FollowerRequestCard from "../component/cards/FollowerRequestCard";
-import DummyUsersCard from "../component/cards/DummyUsersCard";
+import HomePagePostWrapper from "../wrapper/HomePagePostWrapper"; 
 
 const HomePage = () => {
   return (
-    <>
+    <div style={{background: "radial-gradient(circle, rgba(184,186,107,1) 0%, rgba(221,219,160,1) 37%, rgba(146,200,105,1) 100%)"}}>
       <NavrBarComponent />
-      <CreatePostComponent/>
-      <Container>
-        <Row>
-          <Col className="m-4 p-3 card">
-            <Post className="m-5" />
-            <Post className="m-5" />
-            <Post className="m-5" />
-            <Post className="m-5" />
-          </Col>
-          <Col xs={3} className="my-4">
-            <DummyUsersCard/>
-            <FollowerRequestCard/>
-            <FollowerCard />
-            <FollowingCard />
-          </Col>
-        </Row>
-      </Container>
-      <FooterComponent />
-    </>
+      <CreatePostComponent />
+      <HomePagePostWrapper/>
+    </div>
   );
 };
 

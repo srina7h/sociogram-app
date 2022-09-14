@@ -3,7 +3,11 @@ import React, { createContext, useState } from "react";
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  const [loggedInUser, setLoggedInUser] = useState({});
+  const [loggedInUser, setLoggedInUser] = useState({
+    id: 2,
+    name: "",
+    isLoggedIn: false,
+  });
   const [users, setUsers] = useState([]);
 
   const searchUser = (userName) => {

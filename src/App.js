@@ -21,8 +21,8 @@ function App() {
         <Route path="/Signin" element={<RegisterDialog />} />
 
         <Route element={<ProtectedRoutes auth={loggedInUser.isLoggedIn} />} />
-        <Route path="/UserDetailsPage" element={<UserDetailsPage />} />
-        <Route path="/ProfilePage" element={<ProfilePage />} />
+        <Route path="/userDetail" element={<UserDetailsPage />} />
+        <Route path="/profile/:id" element={<ProfilePage />} />
       </Routes>
   
   );

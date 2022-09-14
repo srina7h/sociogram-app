@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import userApi from "../api/user";
@@ -33,6 +33,7 @@ const Login = ({ isLoginVisible, setLoginVisible, setRegisterVisible }) => {
       .catch((error) => {
         console.log(`Error -> ${error}`);
       });
+
   };
   return (
     <div>

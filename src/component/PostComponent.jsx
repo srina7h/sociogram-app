@@ -1,22 +1,26 @@
-import React from "react";
-import Button from "react-bootstrap/Button";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/esm/Image";
-const Post = () => {
+import LikeComponent from "../component/LikeComponent";
+
+const Post = ({ post }) => {
+  console.log(post);
   return (
-    <>
-      <Card className="w-75 m-auto my-3">
-        <Card className='d-flex'>
-          <Card.Img variant="top" src={require("../assests/images/pc1.png")} />
+    <div className="col-3">
+      <Card className="w-100 m-auto my-3 ">
+        <Card className="d-flex ">
+          <Card.Img
+            variant="top"
+            src={`data:image/jpeg;base64,${post.image}`}
+          />
           <Card.Body>
-            <Card.Title>Post</Card.Title>
-            <Card.Text>Hiii</Card.Text>
-            <Button variant="primary">Like</Button>
+            <Card.Title>{post.details}</Card.Title>
+            {/* <LikeComponent /> */}
           </Card.Body>
         </Card>
       </Card>
-
-    </>
+    </div>
   );
 };
 

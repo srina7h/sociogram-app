@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import React from 'react'
  
- const SearchPage = () => {
+ const SearchComponent = () => {
    return (
      <div><Form className="d-flex">
      <Form.Control
@@ -16,4 +16,4 @@ import React from 'react'
    )
  }
  
- export default SearchPage
+ export default SearchComponent
